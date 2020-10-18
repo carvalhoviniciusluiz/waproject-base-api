@@ -3,6 +3,8 @@ WaProject Api Base
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f109c9a8c09dd5e648dd)
 
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=waproject-base-api&uri=https%3A%2F%2Fgithub.com%2Fcarvalhoviniciusluiz%2Fwaproject-base-api%2Fblob%2Fmain%2Fdocs%2FAPI%2FInsomnia.json)
+
 Utilize o VSCode, já está configurado com sugestão de extensões e debug.
 
 ### Tecnologias
