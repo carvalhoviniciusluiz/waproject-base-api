@@ -18,7 +18,7 @@ export class OrderRepository {
     const offset = (page - 1) * params.pageSize;
 
     const [row, results] = await Promise.all([
-      this.getOrderQuery(params, transaction)
+      this.getOrderQuery(params, transaction, false)
         .count('*')
         .first(),
       this.getOrderQuery(params, transaction)
@@ -33,10 +33,10 @@ export class OrderRepository {
     };
   }
 
-  private getOrderQuery(params: IPaginationParams, transaction?: Transaction): QueryBuilderType<Order> {
+  private getOrderQuery(params: IPaginationParams, transaction?: Transaction, orderBy = true): QueryBuilderType<Order> {
     let query = Order.query(transaction);
 
-    if (params.orderBy) {
+    if (orderBy && params.orderBy) {
       query = query.orderBy(params.orderBy, params.orderDirection);
     }
 
