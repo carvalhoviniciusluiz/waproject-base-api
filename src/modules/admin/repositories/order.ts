@@ -22,7 +22,18 @@ export class OrderRepository {
         .count('*')
         .first(),
       this.getOrderQuery(params, transaction)
-        .select('*')
+        .select([
+          'Order.id',
+          'Order.description',
+          'Order.quantity',
+          'Order.price',
+          'Order.createdDate',
+          'Order.updatedDate',
+          'User.email'
+        ])
+        .leftJoin('User', function() {
+          this.on('User.id', '=', 'Order.userId');
+        })
         .offset(offset)
         .limit(params.pageSize)
     ]);
@@ -37,7 +48,7 @@ export class OrderRepository {
     let query = Order.query(transaction);
 
     if (orderBy && params.orderBy) {
-      query = query.orderBy(params.orderBy, params.orderDirection);
+      query = query.orderBy(`Order.${params.orderBy}`, params.orderDirection);
     }
 
     if (params.term) {
